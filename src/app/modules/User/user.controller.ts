@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { UserService } from "./user.service";
+import { userService } from "./user.service";
 
-const CreateAdmin = async (req: Request, res: Response) => {
-  const result = await UserService.CreateAdmin(req.body);
-  return res.status(200).json(result);
+const createAdmin = async (req: Request, res: Response) => {
+  const result = await userService.createAdmin(req.body);
+  res.send(result);
 };
 
-export const UserController = {
-  CreateAdmin,
+export const userController = {
+  createAdmin,
 };
