@@ -33,6 +33,7 @@ const getAllFromDB = async (params: any, options: any) => {
     AND: andCondition,
   };
 
+  
   const result = await prisma.admin.findMany({
     where: whereCondition,
     skip: (Number(page) - 1) * limit,
