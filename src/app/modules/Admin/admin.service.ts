@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { Admin, Prisma, PrismaClient } from "@prisma/client";
 import { paginationHelper } from "../../../helpers/paginationHelpers";
 const prisma = new PrismaClient();
 
@@ -67,13 +67,24 @@ const getByIdFromDB = async (id: string) => {
     },
   });
 
-  return result
+  return result;
 };
+const updateIntoDB = async (id: string, data: Partial<Admin>) => {
+  await prisma.admin.findUniqueOrThrow({
+    where: {
+      id,
+    },
+  });
 
-
-
+  const result = await prisma.admin.update({
+    where: { id },
+    data,
+  });
+  return result;
+};
 
 export const adminService = {
   getAllFromDB,
   getByIdFromDB,
+  updateIntoDB,
 };
