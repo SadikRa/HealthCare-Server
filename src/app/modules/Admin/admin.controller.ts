@@ -63,8 +63,28 @@ const updateIntoDB = async (req: Request, res: Response) => {
   }
 };
 
+const deleteFromDB = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const result = await adminService.deleteFromDB(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Admin data deleted",
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      error: err,
+    });
+  }
+};
+
 export const adminController = {
   getAllFromDB,
   getByIdFromDB,
   updateIntoDB,
+  deleteFromDB,
 };
