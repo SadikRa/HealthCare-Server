@@ -15,7 +15,7 @@ const getAllFromDB: RequestHandler = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: status.OK,
     success: true,
-    message: "Admin data fetched",
+    message: "Admin data fetched", 
     meta: result.meta,
     data: result.data,
   });

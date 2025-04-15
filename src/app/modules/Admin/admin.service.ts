@@ -74,6 +74,8 @@ const getByIdFromDB = async (id: string): Promise<Admin | null> => {
 
   return result;
 };
+
+
 const updateIntoDB = async (
   id: string,
   data: Partial<Admin>
