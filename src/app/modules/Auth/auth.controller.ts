@@ -53,8 +53,20 @@ const changePassword = catchAsync(
   }
 );
 
+const forgotPassword = catchAsync(async (req: Request, res: Response) => {
+  const result = await authService.forgotPassword(req.body);
+
+  sendResponse(res, {
+    statusCode: status.OK,
+    message: "Forgot Password changed successfully",
+    success: true,
+    data: result,
+  });
+});
+
 export const authController = {
   loginUser,
   refreshToken,
   changePassword,
+  forgotPassword,
 };
