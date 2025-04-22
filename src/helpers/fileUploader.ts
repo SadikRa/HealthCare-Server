@@ -1,5 +1,14 @@
 import multer from "multer";
 import path from "path";
+import fs from "fs";
+import { v2 as cloudinary } from "cloudinary";
+import { ICloudinaryResponse, IFile } from "../app/interfaces/file";
+
+cloudinary.config({
+  cloud_name: "dazrkjcqb",
+  api_key: "425524145362715",
+  api_secret: "_wAvexdgoRuR-oT2rXsLXmRNjWw",
+});
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -12,4 +21,25 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-export default upload;
+const uploadToCloudinary = async (
+  file: IFile
+): Promise<ICloudinaryResponse | undefined> => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.upload(
+      file.path,
+      (error: Error, result: ICloudinaryResponse) => {
+        fs.unlinkSync(file.path);
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      }
+    );
+  });
+};
+
+export const fileUploader = {
+  upload,
+  uploadToCloudinary,
+};
