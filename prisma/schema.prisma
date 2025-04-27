@@ -49,7 +49,7 @@ model Doctor {
   email               String   @unique
   profilePhoto        String?
   contactNumber       String
-  address             String
+  address             String?
   registrationNumber  String
   experience          Int      @default(0)
   gender              Gender
@@ -64,7 +64,6 @@ model Doctor {
 
   @@map("doctors")
 }
-
 
 enum Gender {
   MALE
@@ -83,4 +82,3 @@ enum UserStatus {
   BLOCKED
   DELETED
 }
-

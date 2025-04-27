@@ -6,8 +6,8 @@ import { ICloudinaryResponse, IFile } from "../app/interfaces/file";
 
 cloudinary.config({
   cloud_name: "dywlaibo0",
-  api_key: "169636736648187",
-  api_secret: "srOYSpKLw0J1VjBM9xUf_RYrVA4",
+  api_key: "729139981327973",
+  api_secret: "A0IFJ1lVfgafQ6E4m0yLAAZVdN0",
 });
 
 const storage = multer.diskStorage({
