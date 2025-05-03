@@ -5,7 +5,6 @@ import { v2 as cloudinary } from "cloudinary";
 import { ICloudinaryResponse, IFile } from "../app/interfaces/file";
 
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(process.cwd(), "uploads"));
