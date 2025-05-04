@@ -13,7 +13,7 @@ export type IDoctorUpdate = {
   address: string;
   registrationNumber: string;
   experience: number;
-  gender: 'MALE' | 'FEMALE';
+  gender: "MALE" | "FEMALE";
   apointmentFee: number;
   qualification: string;
   currentWorkingPlace: string;

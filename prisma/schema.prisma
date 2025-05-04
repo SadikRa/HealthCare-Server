@@ -92,7 +92,6 @@ model Specialties {
   @@map("specialties")
 }
 
-
 model DoctorSpecialties {
   specialitiesId String
   specialities   Specialties @relation(fields: [specialitiesId], references: [id])
@@ -101,7 +100,7 @@ model DoctorSpecialties {
   doctor   Doctor @relation(fields: [doctorId], references: [id])
 
   @@id([specialitiesId, doctorId])
-  @@map("doctor_specialties")
+  @@map("doctorSpecialties")
 }
 
 enum Gender {
