@@ -4,6 +4,11 @@ import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
 import { ICloudinaryResponse, IFile } from "../app/interfaces/file";
 
+cloudinary.config({
+  cloud_name: "dqdrxjs8p",
+  api_key: "749177184743637",
+  api_secret: "0u9JcZYMf7_KQubaCK_dlGbxu4c",
+});
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

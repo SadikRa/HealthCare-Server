@@ -3,20 +3,19 @@ import {
   Doctor,
   Patient,
   Prisma,
-  PrismaClient,
+  User,
   UserRole,
   UserStatus,
 } from "@prisma/client";
 import * as bcrypt from "bcrypt";
+import prisma from "../../../shared/prisma";
 import { IFile } from "../../interfaces/file";
-import { fileUploader } from "../../../helpers/fileUploader";
 import { Request } from "express";
 import { IPaginationOptions } from "../../interfaces/pagination";
-import { paginationHelper } from "../../../helpers/paginationHelpers";
 import { userSearchAbleFields } from "./user.constant";
 import { IAuthUser } from "../../interfaces/common";
-
-const prisma = new PrismaClient();
+import { fileUploader } from "../../../helpers/fileUploader";
+import { paginationHelper } from "../../../helpers/paginationHelpers";
 
 const createAdmin = async (req: Request): Promise<Admin> => {
   const file = req.file as IFile;
@@ -51,6 +50,9 @@ const createAdmin = async (req: Request): Promise<Admin> => {
 
 const createDoctor = async (req: Request): Promise<Doctor> => {
   const file = req.file as IFile;
+
+  console.log(req.body);
+  console.log("hello",req.body.doctor.profilePhoto);
 
   if (file) {
     const uploadToCloudinary = await fileUploader.uploadToCloudinary(file);
@@ -163,8 +165,8 @@ const getAllFromDB = async (params: any, options: IPaginationOptions) => {
       createdAt: true,
       updatedAt: true,
       admin: true,
-      // patient: true,
-      // doctor: true,
+      patient: true,
+      doctor: true,
     },
   });
 
