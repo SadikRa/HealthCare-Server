@@ -5,6 +5,7 @@ import { UserRole } from "@prisma/client";
 import { userValidation } from "./user.validation";
 import validateRequest from "../../middlewares/validateRequest";
 import { fileUploader } from "../../../helpers/fileUploader";
+import { multerUpload } from "../../../config/multer.config";
 
 const router = express.Router();
 
@@ -33,7 +34,7 @@ router.post(
 router.post(
   "/create-doctor",
   auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-  fileUploader.upload.single("file"),
+  multerUpload.single("file"),
   (req: Request, res: Response, next: NextFunction) => {
     req.body = userValidation.createDoctor.parse(JSON.parse(req.body.data));
     return userController.createDoctor(req, res, next);

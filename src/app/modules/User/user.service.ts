@@ -49,22 +49,22 @@ const createAdmin = async (req: Request): Promise<Admin> => {
 };
 
 const createDoctor = async (req: Request): Promise<Doctor> => {
-  const file = req.file as IFile;
+  // const file = req.file as IFile;
 
-  console.log(req.body);
-  console.log("hello",req.body.doctor.profilePhoto);
-
-  if (file) {
-    const uploadToCloudinary = await fileUploader.uploadToCloudinary(file);
-    req.body.doctor.profilePhoto = uploadToCloudinary?.secure_url;
-  }
+  // if (file) {
+  //   const uploadToCloudinary = await fileUploader.uploadToCloudinary(file);
+  //   req.body.doctor.profilePhoto = uploadToCloudinary?.secure_url;
+  // }
 
   const hashedPassword: string = await bcrypt.hash(req.body.password, 12);
+
+  const profilePhoto = req.file?.path;
 
   const userData = {
     email: req.body.doctor.email,
     password: hashedPassword,
     role: UserRole.DOCTOR,
+    profilePhoto: profilePhoto,
   };
 
   const result = await prisma.$transaction(async (transactionClient) => {
